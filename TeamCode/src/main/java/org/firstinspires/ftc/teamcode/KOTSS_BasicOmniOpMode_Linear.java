@@ -71,7 +71,7 @@ public class KOTSS_BasicOmniOpMode_Linear extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontLeftDrive = null;
     private DcMotor backLeftDrive = null;
-    private DcMotor frontRightDrive = null;
+    private DcMotor frontRightDrive = null ;
     private DcMotor backRightDrive = null;
 
     @Override
@@ -111,9 +111,19 @@ public class KOTSS_BasicOmniOpMode_Linear extends LinearOpMode {
             double max;
 
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
-            double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
-            double lateral =  gamepad1.left_stick_x;
-            double yaw     =  gamepad1.right_stick_x;
+            double axial   = -gamepad1.right_stick_x;  // Note: pushing stick forward gives negative value
+            double lateral =  gamepad1.right_stick_y;
+            double yaw     =  gamepad1.left_stick_y;
+
+
+            if (gamepad1.dpad_left){
+                lateral = -1;
+
+            }
+            if (gamepad1.dpad_right){
+                lateral = 1;
+
+            }
 
             // Combine the joystick requests for each axis-motion to determine each wheel's power.
             // Set up a variable for each drive wheel to save the power level for telemetry.
