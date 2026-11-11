@@ -87,11 +87,9 @@ public class BasicOpMode_Linear_KOTSS extends LinearOpMode {
 
 
 
-        if (gamepad1.rightBumperWasPressed()); {
 
-            intake.setPower((intake.getPower() + 0.01));
 
-        }
+
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
@@ -111,6 +109,9 @@ public class BasicOpMode_Linear_KOTSS extends LinearOpMode {
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
             launcher.setPower(gamepad1.right_trigger);
+
+            intake.setPower(gamepad1.left_trigger);
+
 
             // Tank Mode uses one stick to control each wheel.
             // - This requires no math, but it is hard to drive forward slowly and keep straight.
