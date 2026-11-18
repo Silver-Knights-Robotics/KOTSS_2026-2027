@@ -59,8 +59,10 @@ public class BasicOpMode_Linear_KOTSS extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
-    private DcMotor launcher = null;
-    private DcMotor intake = null;
+    private DcMotor launcher1 = null;
+    private DcMotor intake1 = null;
+    private DcMotor launcher2 = null;
+    private DcMotor intake2 = null;
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -71,14 +73,17 @@ public class BasicOpMode_Linear_KOTSS extends LinearOpMode {
         // step (using the FTC Robot Controller app on the phone).
         leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
         rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
-        launcher = hardwareMap.get(DcMotor.class, "launcher");
-        intake = hardwareMap.get(DcMotor.class, "intake");
+        launcher1 = hardwareMap.get(DcMotor.class, "launcher1");
+        intake1 = hardwareMap.get(DcMotor.class, "intake1");
+        launcher2 = hardwareMap.get(DcMotor.class, "launcher2");
+        intake2 = hardwareMap.get(DcMotor.class, "intake2");
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
         rightDrive.setDirection(DcMotor.Direction.FORWARD);
-        launcher.setDirection(DcMotor.Direction.REVERSE);
+        launcher1.setDirection(DcMotor.Direction.REVERSE);
+        launcher2.setDirection(DcMotor.Direction.FORWARD);
         // Wait for the game to start (driver presses START)
         waitForStart();
         runtime.reset();
@@ -108,9 +113,9 @@ public class BasicOpMode_Linear_KOTSS extends LinearOpMode {
             leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
-            launcher.setPower(gamepad1.right_trigger);
+            launcher1.setPower(gamepad1.right_trigger);
 
-            intake.setPower(gamepad1.left_trigger);
+            intake1.setPower(gamepad1.left_trigger);
 
 
             // Tank Mode uses one stick to control each wheel.
